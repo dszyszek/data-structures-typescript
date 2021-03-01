@@ -1,4 +1,4 @@
-import LinkedList from './ds/linkedList';
+import LinkedList from './ds/LinkedList/linkedList';
 
 export {
     LinkedList
