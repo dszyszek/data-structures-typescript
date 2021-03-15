@@ -29,23 +29,49 @@ class LinkedList implements ILinkedList {
         }
     }
 
-    shift() {
+    private getLastNode(head: ILinkedListNode): ILinkedListNode {
+        if (head.next === null) {
+            return head;
+        }
+        return this.getLastNode(head.next);
+    }
+
+    private getNodeAt(index: number): ILinkedListNode {
+        // WIP
+        return this.head;
+    }
+
+    private get linkedListLength(): number {
+        // WIP
+
+        return 0;
+    }
+
+    public shift() {
+        // WIP
 
     }
 
-    unshift() {
+    public unshift() {
+        // WIP
 
     }
 
-    append() {
+    public append(newNode: ILinkedListNode): ILinkedListNode {
+        const lastNode: ILinkedListNode = this.getLastNode(this.head);
+        lastNode.next = newNode;
+
+        return this.head;
+    }
+
+    public pop() {
+        // WIP
+        const lastNode: ILinkedListNode = this.getLastNode(this.head);
 
     }
 
-    pop() {
-
-    }
-
-    get() {
+    public get() {
+        // WIP
 
     }
 }

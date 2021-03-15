@@ -1,6 +1,6 @@
 interface ILinkedListNode<T = any, U = any> {
-    val: T | null;
-    next: U | null;
+    val: T;
+    next: U;
 };
 
 type TPassedVal<T> = T | null;
