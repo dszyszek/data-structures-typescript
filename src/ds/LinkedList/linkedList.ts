@@ -4,7 +4,7 @@ type TLinkedListParameter = any[] | [];
 
 export interface ILinkedList {
     append: Function;
-    get: Function;
+    getNodeAt: Function;
     shift: Function;
     unshift: Function;
     pop: Function;
@@ -31,7 +31,7 @@ class LinkedList implements ILinkedList {
         }
     }
 
-    // getters
+    // GETTERS
     public get val(): ILinkedListNode {
         return this.listHead.val;
     } 
@@ -42,47 +42,71 @@ class LinkedList implements ILinkedList {
         return this.linkedListLength;
     }
 
-    // private methods
+    // PRIVATE METHODS
     private getLastNode(head: ILinkedListNode): ILinkedListNode {
-        // console.log(head, 'head in getLastNode');
         if (head.next === null) {
             return head;
         }
         return this.getLastNode(head.next);
     }
 
-    private getNodeAt(index: number): ILinkedListNode {
-        // WIP
-        return this.listHead;
-    }
+    // PUBLIC METHODS
 
-    // public methods
+    public getNodeAt(index: number): ILinkedListNode {
+        // get node at passed level of deepness (index)
 
-    public shift() {
-        // WIP
+        let counter: number = 0;
+        let node: ILinkedListNode = this.listHead;
 
-    }
+        if (index > this.linkedListLength) {
+            throw Error(`Out of range error (getNodeAt executed with index: ${index}, while Linked List length is: ${this.linkedListLength})`);
+        }
 
-    public unshift() {
-        // WIP
+        while(counter <= index) {
+            node = node.next;
+            counter++;
+        }
 
+        return node;
     }
 
     public append(newNode: ILinkedListNode): ILinkedListNode {
+        // adds newNode at the end of linked list and returns head
+
         const lastNode: ILinkedListNode = this.getLastNode(this.listHead);
         lastNode.next = newNode;
 
         return this.listHead;
     }
 
-    public pop() {
-        // WIP
-        const lastNode: ILinkedListNode = this.getLastNode(this.listHead);
+    public pop(): ILinkedListNode {
+        // removes last list node and returns it 
 
+        const parentToLastNode: ILinkedListNode = this.getNodeAt(this.linkedListLength - 1);
+        const lastNode = parentToLastNode.next;
+        parentToLastNode.next = null;
+
+        return lastNode;
     }
 
-    public get() {
-        // WIP
+    public shift(): ILinkedListNode {
+        // removes first node and returns it
+
+        const firstNode = this.listHead;
+        const firstNodeChild: ILinkedListNode = this.listHead.next;
+        this.listHead = firstNodeChild;
+
+        return firstNode;
+    }
+
+    public unshift(node: ILinkedListNode): ILinkedListNode {
+        // takes node to place as head and returnsit
+
+        const prevHead = this.listHead;
+        node.next = prevHead;
+
+        this.listHead = node;
+        return this.listHead;
 
     }
 }
