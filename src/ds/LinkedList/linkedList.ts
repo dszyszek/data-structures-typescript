@@ -3,26 +3,29 @@ import LinkedListNode, { ILinkedListNode } from './linkedListNode';
 type TLinkedListParameter = any[] | [];
 
 export interface ILinkedList {
-    getNodeAt: (indexOfNode: number, head: ILinkedListNode) => ILinkedListNode;
+    getNodeAt: (indexOfNode: number, head?: ILinkedListNode) => ILinkedListNode;
     shift: () => ILinkedListNode;
-    unshift: (node: ILinkedListNode) => ILinkedListNode;
+    unshift: (element: any) => ILinkedListNode;
     pop: () => ILinkedListNode;
-    add: (arrayOfElements: any[], head: ILinkedListNode) => ILinkedListNode;
+    add: (element: any) => ILinkedListNode;
+    addMany: (arrayOfElements: any[]) => ILinkedListNode;
+    insert: (index: number, element: any) => ILinkedListNode;
     readonly val: any;
     readonly next: ILinkedListNode | null;
     readonly length: number;
+    readonly lastNode: ILinkedListNode | null;
+    readonly head: ILinkedListNode;
 };
 
 class LinkedList implements ILinkedList {
     private listHead: ILinkedListNode = new LinkedListNode();
     private linkedListLength: number = 0;
 
-    constructor(listStructure?: TLinkedListParameter) {
+    constructor(listStructure: TLinkedListParameter = []) {
 
         // If listStructure passed, assign its values to linked list
-        if (listStructure?.length) {
-            this.listHead.val = listStructure[0];
-            this.add(listStructure.slice(1));
+        if (listStructure.length) {
+            this.addMany(listStructure);
         }
     }
 
@@ -36,22 +39,40 @@ class LinkedList implements ILinkedList {
     public get length(): number {
         return this.linkedListLength;
     }
+    public get lastNode(): ILinkedListNode {
+        return this.getNodeAt(this.linkedListLength);
+    }
+    public get head(): ILinkedListNode {
+        return this.getNodeAt(0);
+    }
 
     // PRIVATE METHODS
 
-    private appendNode(newNode: ILinkedListNode): ILinkedListNode {
-        // adds newNode at the end of linked list and returns head
+    private changeLinkedListLength(newLength: number): void {
+        this.linkedListLength = newLength;
+    }
 
-        const lastNode: ILinkedListNode = this.getNodeAt(this.linkedListLength, this.listHead);
-        lastNode.next = newNode;
-        this.linkedListLength += 1;
+    private placeNodeAt(node: ILinkedListNode, index: number): ILinkedListNode {
+        // places node at given index and returns new head
+        const parentNodeAtIndex: ILinkedListNode = this.getNodeAt(index-1);
+        const currentNodeAtIndex: ILinkedListNode = this.getNodeAt(index);
+        // console.log(this.listHead, 'this.listHead');
+        
+
+        node.next = this.listHead.val === null ? null : currentNodeAtIndex;
+        if (parentNodeAtIndex === currentNodeAtIndex) {
+            // this conditions covers case, when index = 0 (and so parentNodeAtIndex === currentNodeAtIndex)
+            this.listHead = node;
+        } else {
+            parentNodeAtIndex.next = node;
+        }
 
         return this.listHead;
     }
 
     // PUBLIC METHODS
 
-    public getNodeAt(indexOfNode: number, head: ILinkedListNode): ILinkedListNode {
+    public getNodeAt(indexOfNode: number, head: ILinkedListNode = this.listHead): ILinkedListNode {
         // get node at passed level of deepness (index)
         if (indexOfNode > this.linkedListLength) {
             throw Error(`Out of range error (getNodeAt executed with index: ${indexOfNode}, while Linked List length is: ${this.linkedListLength})`);
@@ -67,6 +88,7 @@ class LinkedList implements ILinkedList {
 
         const parentToLastNode: ILinkedListNode = this.getNodeAt(this.linkedListLength - 1, this.listHead);
         parentToLastNode.next = null;
+        this.changeLinkedListLength(this.linkedListLength - 1);
 
         return this.listHead;
     }
@@ -76,30 +98,40 @@ class LinkedList implements ILinkedList {
 
         const firstNodeChild: ILinkedListNode = this.listHead.next;
         this.listHead = firstNodeChild;
+        this.changeLinkedListLength(this.linkedListLength - 1);
 
         return this.listHead;
     }
 
-    public unshift(node: ILinkedListNode): ILinkedListNode {
-        // takes node to place as head and returns new head
-
-        const prevHead = this.listHead;
-        node.next = prevHead;
-
-        this.listHead = node;
+    public unshift(element: any): ILinkedListNode {
+        // add new node at the beggining and returns new head
+        
+        this.insert(0, element);
         return this.listHead;
-
     }
 
-    public add(arrayOfElements: any[]): ILinkedListNode {
-        // adds element (array of elements) at the end of linked list and returns new head
+    public add(element: any): ILinkedListNode {
+        // add new node at the end and returns new head
 
-        for (let i = 0; i < arrayOfElements.length; i++) {
-            let newNode = new LinkedListNode();
-            newNode.val = arrayOfElements[i];
-            newNode.next = arrayOfElements[i + 1] ? new LinkedListNode(arrayOfElements[i + 1]) : null;
-            this.appendNode(newNode);
+        this.insert(this.linkedListLength, element);
+        return this.listHead;
+    }
+
+    public addMany(arrayOfElements: any[]): ILinkedListNode {
+        // adds many elements at the end of linked list and returns new head
+
+        if (!arrayOfElements.length) {
+            return this.listHead;
         }
+
+        this.insert(this.linkedListLength, arrayOfElements[0]);
+        return this.addMany(arrayOfElements.slice(1));
+    }
+
+    public insert(index: number, element: any): ILinkedListNode {
+        const newNode = new LinkedListNode(element);
+        this.placeNodeAt(newNode, index);
+        this.changeLinkedListLength(this.linkedListLength + 1);
 
         return this.listHead;
     }
