@@ -40,7 +40,7 @@ class LinkedList implements ILinkedList {
         return this.linkedListLength;
     }
     public get lastNode(): ILinkedListNode {
-        return this.getNodeAt(this.linkedListLength);
+        return this.getNodeAt(this.linkedListLength-1);
     }
     public get head(): ILinkedListNode {
         return this.getNodeAt(0);
@@ -86,7 +86,7 @@ class LinkedList implements ILinkedList {
     public pop(): ILinkedListNode {
         // removes last list node and returns new head
 
-        const parentToLastNode: ILinkedListNode = this.getNodeAt(this.linkedListLength - 1, this.listHead);
+        const parentToLastNode: ILinkedListNode = this.getNodeAt(this.linkedListLength - 2, this.listHead);
         parentToLastNode.next = null;
         this.changeLinkedListLength(this.linkedListLength - 1);
 
