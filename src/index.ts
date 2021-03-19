@@ -1,5 +1,3 @@
-import LinkedList from './ds/LinkedList/linkedList';
+import LinkedList from './ds/LinkedList/linkedList'
 
-export {
-    LinkedList
-}
+export default LinkedList
