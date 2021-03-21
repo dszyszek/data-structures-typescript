@@ -1,5 +1,5 @@
 import cloneDeep from 'lodash/cloneDeep'
-import LinkedListNode, { ILinkedListNode } from './linkedListNode'
+import LinkedListNode, { ILinkedListNode } from './LinkedListNode'
 
 type TLinkedListParameter = any[] | []
 
@@ -62,7 +62,6 @@ class LinkedList implements ILinkedList {
         // places node at given index and returns new head
         const parentNodeAtIndex: ILinkedListNode = this.getNodeAt(index - 1)
         const currentNodeAtIndex: ILinkedListNode = this.getNodeAt(index)
-        // console.log(this.listHead, 'this.listHead');
 
         nodeCopy.next = this.listHead.val === null ? null : currentNodeAtIndex
         if (parentNodeAtIndex === currentNodeAtIndex) {
