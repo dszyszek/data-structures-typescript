@@ -6,14 +6,17 @@
     "scripts": {
         "test": "jest",
         "test:watch": "jest --watch",
-        "lint": "npx eslint -c ./.eslintrc.json . --ext .ts",
+        "lint": "eslint -c ./.eslintrc.json . --ext ts",
         "build": "tsc",
-        "dev": "nodemon --exec ts-node ./src/index.ts --watch src --ext .ts"
+        "dev": "nodemon --exec ts-node ./src/index.ts --watch src --ext .ts",
+        "pretty-quick": "pretty-quick --staged",
+        "list-n-test-in-parallel": "run-p lint test"
     },
     "author": "dszyszek",
     "license": "ISC",
     "dependencies": {
         "@types/lodash": "^4.14.168",
+        "concurrently": "^6.0.0",
         "lodash": "^4.17.21",
         "typescript": "^4.2.2"
     },
@@ -35,15 +38,14 @@
         "jest": "^26.6.3",
         "lint-staged": "^10.5.4",
         "nodemon": "^2.0.7",
+        "npm-run-all": "^4.1.5",
         "prettier": "^2.2.1",
+        "pretty-quick": "^3.1.0",
         "ts-node": "^9.1.1"
     },
     "husky": {
         "hooks": {
-            "pre-commit": "lint-staged"
+            "pre-commit": "run-s pretty-quick  list-n-test-in-parallel"
         }
-    },
-    "lint-staged": {
-        "*.{js,jsx,ts,tsx}": "eslint --cache --fix"
     }
 }
