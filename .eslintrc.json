@@ -1,17 +1,15 @@
 {
-  "extends": [
-      "airbnb-typescript/base",
-      "plugin:prettier/recommended",
-      "plugin:jsx-a11y/recommended"
-  ],
-  "plugins": [
-      "prettier",
-      "react"
-  ],
-  "rules": {
-      "prettier/prettier": ["error"]
-  },
-  "parserOptions": {
-    "project": "./tsconfig.json"
-  }
+    "extends": [
+        "airbnb-typescript/base",
+        "plugin:prettier/recommended",
+        "plugin:jsx-a11y/recommended"
+    ],
+    "plugins": ["prettier", "react"],
+    "rules": {
+        "prettier/prettier": ["error"],
+        "no-restricted-syntax": ["error", "ForInStatement", "LabeledStatement", "WithStatement"]
+    },
+    "parserOptions": {
+        "project": "./tsconfig.json"
+    }
 }
