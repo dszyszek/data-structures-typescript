@@ -1,13 +1,15 @@
-class Edge {
-    public source: number
+import Vertex, { TVertexValue, IVertex } from './Vertex'
 
-    public destination: number
+class Edge {
+    public source: IVertex
+
+    public destination: IVertex
 
     public weight: number
 
-    constructor(source: number, destination: number, weight: number) {
-        this.source = source
-        this.destination = destination
+    constructor(source: TVertexValue, destination: TVertexValue, weight: number) {
+        this.source = new Vertex(source)
+        this.destination = new Vertex(destination)
         this.weight = weight
     }
 }

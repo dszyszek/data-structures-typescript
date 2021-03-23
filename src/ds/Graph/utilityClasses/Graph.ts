@@ -9,15 +9,16 @@
 import LinkedList, { ILinkedList } from '../../LinkedList/LinkedList'
 import { ILinkedListNode } from '../../LinkedList/LinkedListNode'
 import GraphAbstract from './GraphAbstract'
+import Vertex, { TVertexValue, IVertex } from './Vertex'
 
-export type TAdjacencyList = ILinkedList
+export type TAdjacencyList = Map<TVertexValue, ILinkedList>
 
 class Graph extends GraphAbstract {
-    public adjList: Map<number, TAdjacencyList> = new Map()
+    public adjList: TAdjacencyList = new Map()
 
     public nuberOfVertices: number = 0
 
-    constructor(existingList?: Map<number, TAdjacencyList>) {
+    constructor(existingList?: TAdjacencyList) {
         super()
         if (existingList) {
             this.adjList = existingList
@@ -27,7 +28,7 @@ class Graph extends GraphAbstract {
 
     // PRIVATE METHODS
 
-    private countNumberOfVerticies = (adjacencyList: Map<number, TAdjacencyList>): number => {
+    private countNumberOfVerticies = (adjacencyList: TAdjacencyList): number => {
         return adjacencyList.size
     }
 
@@ -40,14 +41,16 @@ class Graph extends GraphAbstract {
 
     public addVertex = (): void => {
         const newVertexNumber = this.nuberOfVertices + 1
-        const adjacentValues: ILinkedList = new LinkedList([newVertexNumber])
+        const newVertex: IVertex = new Vertex(newVertexNumber)
+        const adjacentValues: ILinkedList = new LinkedList([newVertex])
 
-        this.adjList.set(newVertexNumber, adjacentValues)
+        this.adjList.set(newVertex.val, adjacentValues)
         this.changeNumberOfVertices(this.adjList.size)
     }
 
-    public getVertex = (vartexValue: number): ILinkedList | undefined => {
-        return this.adjList.get(vartexValue)
+    public getVertex = (vertex: IVertex): ILinkedList | undefined => {
+        const vertexValue: TVertexValue = vertex.val
+        return this.adjList.get(vertexValue)
     }
 
     public display = () => {
@@ -64,10 +67,9 @@ class Graph extends GraphAbstract {
         })
     }
 
-    public getRepresentation = (): Map<number, ILinkedList> => {
+    public getRepresentation = (): TAdjacencyList => {
         return this.adjList
     }
 }
 
 export default Graph
-// Q#nk3SIjPnCn

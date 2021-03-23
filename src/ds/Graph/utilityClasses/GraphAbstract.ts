@@ -5,6 +5,7 @@
  */
 
 import { ILinkedList } from '../../LinkedList/LinkedList'
+import { IVertex } from './Vertex'
 
 abstract class GraphAbstract {
     public addVertex = (): void => {
@@ -15,7 +16,7 @@ abstract class GraphAbstract {
         throw Error('Method is not implemented!')
     }
 
-    public getVertex = (vartexValue: number): ILinkedList | undefined => {
+    public getVertex = (vertex: IVertex): ILinkedList | undefined => {
         throw Error('Method is not implemented!')
     }
 

@@ -1,8 +1,9 @@
 import WeightedGraph from './utilityClasses/WeightedGraph'
 import Edge from './utilityClasses/Edge'
+import { TVertexValue } from './utilityClasses/Vertex'
 
 class WeightedDirectedGraph extends WeightedGraph {
-    public addEdge = (source: number, destination: number, weight: number) => {
+    public addEdge = (source: TVertexValue, destination: TVertexValue, weight: number) => {
         if (!this.adjList.get(source)) {
             throw Error(`Cannot add edge - source vertex doesn't exist!`)
         }
