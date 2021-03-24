@@ -39,18 +39,16 @@ class Graph extends GraphAbstract {
 
     // PUBLIC METHODS
 
-    public addVertex = (): void => {
-        const newVertexNumber = this.nuberOfVertices + 1
-        const newVertex: IVertex = new Vertex(newVertexNumber)
+    public addVertex = (vertexID: TVertexValue = this.nuberOfVertices + 1): void => {
+        const newVertex: IVertex = new Vertex(vertexID)
         const adjacentValues: ILinkedList = new LinkedList([newVertex])
 
         this.adjList.set(newVertex.val, adjacentValues)
         this.changeNumberOfVertices(this.adjList.size)
     }
 
-    public getVertex = (vertex: IVertex): ILinkedList | undefined => {
-        const vertexValue: TVertexValue = vertex.val
-        return this.adjList.get(vertexValue)
+    public getVertex = (vertexID: TVertexValue): ILinkedList | undefined => {
+        return this.adjList.get(vertexID)
     }
 
     public display = () => {
