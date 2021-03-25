@@ -2,8 +2,14 @@ import UndirectedGraph from '../../ds/Graph/UndirectedGraph'
 import Vertex, { TVertexValue, IVertex } from '../../ds/Graph/utilityClasses/Vertex'
 import LinkedList, { ILinkedList } from '../../ds/LinkedList/linkedList'
 
+const MOCKED_STATE = {
+    ADD_EDGE_ERROR_MESSAGE: `Cannot add egde - one of vertices doesn't exist!`,
+}
+
 describe('UndirectedGraph unit tests', () => {
     let undirectedGraph: UndirectedGraph
+    const { ADD_EDGE_ERROR_MESSAGE } = MOCKED_STATE
+
     beforeEach(() => {
         undirectedGraph = new UndirectedGraph()
     })
@@ -25,12 +31,13 @@ describe('UndirectedGraph unit tests', () => {
     })
 
     it('should return error if new Egde has no corresponding Vertex', () => {
-        // const newVertexName1: TVertexValue = 1
-        // const newVertexName2: TVertexValue = 2
+        const newVertexName1: TVertexValue = 1
+        const newVertexName2: TVertexValue = 2
 
-        // undirectedGraph.addVertex(newVertexName1)
-        expect(undirectedGraph.addEdge).toThrowError(
-            "Cannot add egde - one of vertices doesn't exist!"
+        undirectedGraph.addVertex(newVertexName1)
+
+        expect(() => undirectedGraph.addEdge(newVertexName1, newVertexName2)).toThrow(
+            ADD_EDGE_ERROR_MESSAGE
         )
     })
 })
