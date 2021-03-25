@@ -1,6 +1,6 @@
 import UndirectedGraph from '../../ds/Graph/UndirectedGraph'
 import Vertex, { TVertexValue, IVertex } from '../../ds/Graph/utilityClasses/Vertex'
-import LinkedList, { ILinkedList } from '../../ds/LinkedList/LinkedList'
+import LinkedList, { ILinkedList } from '../../ds/LinkedList/linkedList'
 
 describe('UndirectedGraph unit tests', () => {
     let undirectedGraph: UndirectedGraph

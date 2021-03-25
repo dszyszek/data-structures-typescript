@@ -1,4 +1,4 @@
-import LinkedList from './ds/LinkedList/LinkedList'
+import LinkedList from './ds/LinkedList/linkedList'
 import UndirectedGraph from './ds/Graph/UndirectedGraph'
 import DirectedGraph from './ds/Graph/DirectedGraph'
 import WeightedDirectedGraph from './ds/Graph/WeightedDirectedGraph'

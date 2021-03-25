@@ -1,4 +1,4 @@
-import LinkedList, { ILinkedList } from '../../ds/LinkedList/LinkedList'
+import LinkedList, { ILinkedList } from '../../ds/LinkedList/linkedList'
 
 describe('Linked List unit tests', () => {
     const MOCKED_STATE = {

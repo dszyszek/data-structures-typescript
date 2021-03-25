@@ -6,8 +6,8 @@
  * Adjacency List implemented as Linked List
  */
 
-import LinkedList, { ILinkedList } from '../../LinkedList/LinkedList'
-import { ILinkedListNode } from '../../LinkedList/LinkedListNode'
+import LinkedList, { ILinkedList } from '../../LinkedList/linkedList'
+import { ILinkedListNode } from '../../LinkedList/linkedListNode'
 import GraphAbstract from './GraphAbstract'
 import Vertex, { TVertexValue, IVertex } from './Vertex'
 

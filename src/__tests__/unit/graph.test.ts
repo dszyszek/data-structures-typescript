@@ -1,6 +1,6 @@
 import Graph, { TAdjacencyList } from '../../ds/Graph/utilityClasses/Graph'
 import Vertex, { IVertex, TVertexValue } from '../../ds/Graph/utilityClasses/Vertex'
-import LinkedList, { ILinkedList } from '../../ds/LinkedList/LinkedList'
+import LinkedList, { ILinkedList } from '../../ds/LinkedList/linkedList'
 
 const MOCKED_STATE = {
     ARRAY_OF_NEW_VERTICES: [1, 2, 3, 4, 5, 6],

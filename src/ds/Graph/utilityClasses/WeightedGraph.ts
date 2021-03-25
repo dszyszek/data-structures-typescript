@@ -1,7 +1,7 @@
 /* eslint no-console: 0 */
 
 import Graph from './Graph'
-import { ILinkedListNode } from '../../LinkedList/LinkedListNode'
+import { ILinkedListNode } from '../../LinkedList/linkedListNode'
 import { TVertexValue } from './Vertex'
 
 class WeightedGraph extends Graph {

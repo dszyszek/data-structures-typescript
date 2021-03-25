@@ -4,7 +4,7 @@
  * GraphAbstract abstract class
  */
 
-import { ILinkedList } from '../../LinkedList/LinkedList'
+import { ILinkedList } from '../../LinkedList/linkedList'
 import { IVertex, TVertexValue } from './Vertex'
 
 abstract class GraphAbstract {

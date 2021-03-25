@@ -1,5 +1,5 @@
 import cloneDeep from 'lodash/cloneDeep'
-import LinkedListNode, { ILinkedListNode } from './LinkedListNode'
+import LinkedListNode, { ILinkedListNode } from './linkedListNode'
 
 type TLinkedListParameter = any[] | []
 
