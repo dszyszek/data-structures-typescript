@@ -4,8 +4,8 @@ import { TVertexValue } from './utilityClasses/Vertex'
 
 class WeightedDirectedGraph extends WeightedGraph {
     public addEdge = (source: TVertexValue, destination: TVertexValue, weight: number) => {
-        if (!this.adjList.get(source)) {
-            throw Error(`Cannot add edge - source vertex doesn't exist!`)
+        if (!this.adjList.get(source) || !this.adjList.get(destination)) {
+            throw Error(`Cannot add egde - one of vertices doesn't exist!`)
         }
 
         const edge = new Edge(source, destination, weight)
