@@ -8,10 +8,12 @@ const MOCKED_STATE = {
 
 describe('UndirectedGraph unit tests', () => {
     let undirectedGraph: UndirectedGraph
+    let testAdjacencyList: Map<TVertexValue, ILinkedList>
     const { ADD_EDGE_ERROR_MESSAGE } = MOCKED_STATE
 
     beforeEach(() => {
         undirectedGraph = new UndirectedGraph()
+        testAdjacencyList = new Map<TVertexValue, ILinkedList>()
     })
 
     it('should add new Edge (.addEdge test)', () => {
@@ -20,14 +22,18 @@ describe('UndirectedGraph unit tests', () => {
 
         const testVertex1: IVertex = new Vertex(newVertexName1)
         const testVertex2: IVertex = new Vertex(newVertexName2)
-        const testAdjacencyList: ILinkedList = new LinkedList([testVertex1])
-        testAdjacencyList.add(testVertex2)
+
+        testAdjacencyList.set(testVertex1.val, new LinkedList([testVertex1]))
+        testAdjacencyList.set(testVertex2.val, new LinkedList([testVertex2]))
+
+        testAdjacencyList.get(testVertex1.val)?.add(testVertex2)
+        testAdjacencyList.get(testVertex2.val)?.add(testVertex1)
 
         undirectedGraph.addVertex(newVertexName1)
         undirectedGraph.addVertex(newVertexName2)
         undirectedGraph.addEdge(newVertexName1, newVertexName2)
 
-        expect(undirectedGraph.getVertex(newVertexName1)).toEqual(testAdjacencyList)
+        expect(undirectedGraph.getRepresentation()).toEqual(testAdjacencyList)
     })
 
     it('should return error if new Egde has no corresponding Vertex', () => {
