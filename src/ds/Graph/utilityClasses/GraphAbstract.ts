@@ -12,7 +12,7 @@ abstract class GraphAbstract {
         throw Error('Method not implemented')
     }
 
-    public addEdge = (...[args]: number[]): void => {
+    public addEdge = (v1: number, v2: number, ...[args]: any): void => {
         throw Error('Method is not implemented!')
     }
 
