@@ -30,7 +30,7 @@ class Queue extends QueueAbstract {
 
     public push(val: TQueueVal): ILinkedList {
         const convertedToQueueNode: IQueueNode = new QueueNode(val)
-        this.queue.add(convertedToQueueNode)
+        this.queue.insert(0, convertedToQueueNode)
         return this.queue
     }
 
