@@ -1,7 +1,8 @@
 /* eslint class-methods-use-this: 0 */
 /* eslint @typescript-eslint/no-unused-vars: 0 */
 
-import { IQueueNode } from './QueueNode'
+import { ILinkedList } from '../LinkedList/linkedList'
+import { IQueueNode, TQueueVal } from './QueueNode'
 
 export interface IQueue {
     readonly next: IQueueNode
@@ -15,6 +16,14 @@ abstract class QueueAbstract implements IQueue {
 
     public get isEmpty(): boolean {
         throw Error('Getter not implemented!')
+    }
+
+    public push(val: TQueueVal): ILinkedList {
+        throw Error('Method not implemented!')
+    }
+
+    public pop(): IQueueNode {
+        throw Error('Method not implemented!')
     }
 }
 

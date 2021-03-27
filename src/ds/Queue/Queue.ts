@@ -1,5 +1,43 @@
 import QueueAbstract from './QueueAbstract'
+import QueueNode, { TQueueVal, IQueueNode } from './QueueNode'
+import LinkedList, { ILinkedList } from '../LinkedList/linkedList'
+import { ILinkedListNode } from '../LinkedList/linkedListNode'
 
-class Queue extends QueueAbstract {}
+class Queue extends QueueAbstract {
+    private queue: ILinkedList = new LinkedList()
+
+    constructor(passedArrayOfValues?: TQueueVal[]) {
+        super()
+        if (passedArrayOfValues) {
+            passedArrayOfValues.forEach((val) => {
+                const convertedToStackNode: IQueueNode = new QueueNode(val)
+                this.queue.add(convertedToStackNode)
+            })
+        }
+    }
+
+    private getNextNode(): ILinkedListNode {
+        return this.queue.lastNode
+    }
+
+    public get next(): IQueueNode {
+        return this.getNextNode()
+    }
+
+    public get isEmpty(): boolean {
+        return !this.queue.length
+    }
+
+    public push(val: TQueueVal): ILinkedList {
+        this.queue.add(val)
+        return this.queue
+    }
+
+    public pop(): IQueueNode {
+        const removedLastVal: IQueueNode = this.getNextNode()
+        this.queue.pop()
+        return removedLastVal
+    }
+}
 
 export default Queue
