@@ -10,7 +10,7 @@
         "build": "tsc",
         "dev": "nodemon --exec ts-node ./src/index.ts --watch src --ext .ts",
         "pretty-quick": "pretty-quick --staged",
-        "list-n-test-in-parallel": "run-p lint test"
+        "lint-n-test-in-parallel": "run-p lint test"
     },
     "author": "dszyszek",
     "license": "ISC",
@@ -44,7 +44,7 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": "run-s pretty-quick  list-n-test-in-parallel"
+            "pre-commit": "run-s pretty-quick  lint-n-test-in-parallel"
         }
     }
 }
