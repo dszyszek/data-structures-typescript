@@ -16,12 +16,12 @@ class Queue extends QueueAbstract {
         }
     }
 
-    private getNextNode(): ILinkedListNode {
+    private getLastNode(): ILinkedListNode {
         return this.queue.lastNode
     }
 
     public get next(): IQueueNode {
-        return this.getNextNode()
+        return this.getLastNode().val
     }
 
     public get isEmpty(): boolean {
@@ -29,12 +29,13 @@ class Queue extends QueueAbstract {
     }
 
     public push(val: TQueueVal): ILinkedList {
-        this.queue.add(val)
+        const convertedToQueueNode: IQueueNode = new QueueNode(val)
+        this.queue.add(convertedToQueueNode)
         return this.queue
     }
 
     public pop(): IQueueNode {
-        const removedLastVal: IQueueNode = this.getNextNode()
+        const removedLastVal: IQueueNode = this.getLastNode().val
         this.queue.pop()
         return removedLastVal
     }

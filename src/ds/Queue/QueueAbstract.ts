@@ -5,6 +5,8 @@ import { ILinkedList } from '../LinkedList/linkedList'
 import { IQueueNode, TQueueVal } from './QueueNode'
 
 export interface IQueue {
+    push: (val: TQueueVal) => ILinkedList
+    pop: () => IQueueNode
     readonly next: IQueueNode
     readonly isEmpty: boolean
 }
