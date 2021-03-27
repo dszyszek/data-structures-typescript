@@ -41,11 +41,11 @@ describe('Queue unit tests', () => {
             mockQueueWith(QUEUE_VALUES)
         })
 
-        it('should push new value on the end of the queue (.push() test)', () => {
-            const expectedQueueNext: IQueueNode = new QueueNode(NEW_QUEUE_VAL)
+        it('should push new value on the beginning of the queue (.push() test)', () => {
+            const expectedQueue: IQueue = new Queue([NEW_QUEUE_VAL, ...QUEUE_VALUES])
             queue.push(NEW_QUEUE_VAL)
 
-            expect(queue.next).toEqual(expectedQueueNext)
+            expect(queue).toEqual(expectedQueue)
         })
         it('should remove last value (.pop() test )', () => {
             const currentQueueNext: IQueueNode = queue.next
