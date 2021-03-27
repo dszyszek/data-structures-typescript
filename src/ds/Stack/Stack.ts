@@ -20,7 +20,7 @@ class Stack extends StackAbstract {
     }
 
     public get isEmpty(): Boolean {
-        return !!this.stack.length
+        return !this.stack.length
     }
 
     public push = (val: TStackNodeVal): ILinkedList => {
