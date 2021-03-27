@@ -14,7 +14,7 @@ export interface ILinkedList {
     readonly val: any
     readonly next: ILinkedListNode | null
     readonly length: number
-    readonly lastNode: ILinkedListNode | null
+    readonly lastNode: ILinkedListNode
     readonly head: ILinkedListNode
 }
 
@@ -44,7 +44,13 @@ class LinkedList implements ILinkedList {
     }
 
     public get lastNode(): ILinkedListNode {
-        return this.getNodeAt(this.linkedListLength - 1)
+        let probableLastNode: ILinkedListNode = this.getNodeAt(this.linkedListLength - 1)
+
+        if (probableLastNode === null) {
+            probableLastNode = this.getNodeAt(this.linkedListLength - 2)
+        }
+
+        return probableLastNode
     }
 
     public get head(): ILinkedListNode {
