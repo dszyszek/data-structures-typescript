@@ -6,6 +6,18 @@ import BinaryTreeNode, { TBinaryTreeVal, IBinaryTreeNode } from './BinaryTreeNod
 class BinaryTree extends BinaryTreeAbstract {
     private binaryTree: IBinaryTreeNode = new BinaryTreeNode()
 
+    constructor(passedVals?: TBinaryTreeVal[]) {
+        super()
+
+        if (passedVals?.length) {
+            this.addMany(passedVals)
+        }
+    }
+
+    public get root(): IBinaryTreeNode {
+        return this.binaryTree
+    }
+
     private deleteRecursively = (val: TBinaryTreeVal, tree: IBinaryTreeNode): IBinaryTreeNode => {
         if (!!tree.left && val < tree.val) {
             if (tree.left.val === val) {
@@ -46,6 +58,11 @@ class BinaryTree extends BinaryTreeAbstract {
     }
 
     private addRecursively = (node: IBinaryTreeNode, tree: IBinaryTreeNode): IBinaryTreeNode => {
+        if (tree.val === null) {
+            this.binaryTree = node
+            return this.binaryTree
+        }
+
         if (node.val < tree.val) {
             // assign to left
 
@@ -72,11 +89,11 @@ class BinaryTree extends BinaryTreeAbstract {
 
     public add = (val: TBinaryTreeVal): IBinaryTreeNode => {
         const convertedToBinaryTreeNode: IBinaryTreeNode = new BinaryTreeNode(val)
-        const newBinaryTree: IBinaryTreeNode = this.addRecursively(
+        const updatedTree: IBinaryTreeNode = this.addRecursively(
             convertedToBinaryTreeNode,
             this.binaryTree
         )
-        return newBinaryTree
+        return updatedTree
     }
 
     public contains = (val: TBinaryTreeVal): boolean => {
@@ -87,6 +104,11 @@ class BinaryTree extends BinaryTreeAbstract {
     public delete = (val: TBinaryTreeVal): IBinaryTreeNode => {
         const returnedTree: IBinaryTreeNode = this.deleteRecursively(val, this.binaryTree)
         return returnedTree
+    }
+
+    public addMany = (values: TBinaryTreeVal[]): IBinaryTreeNode => {
+        values.forEach((val) => this.add(val))
+        return this.binaryTree
     }
 }
 
