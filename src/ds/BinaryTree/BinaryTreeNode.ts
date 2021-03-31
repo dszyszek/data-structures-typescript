@@ -12,10 +12,10 @@ class BinaryTreeNode implements IBinaryTreeNode {
 
     public right: IBinaryTreeNode | null = null
 
-    constructor(val: TBinaryTreeVal = null, left?: TBinaryTreeVal, right?: TBinaryTreeVal) {
+    constructor(val: TBinaryTreeVal = null) {
         this.val = val
-        this.left = new BinaryTreeNode(left)
-        this.right = new BinaryTreeNode(right)
+        this.left = null
+        this.right = null
     }
 }
 
