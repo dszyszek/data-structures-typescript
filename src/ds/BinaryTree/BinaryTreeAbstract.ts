@@ -3,11 +3,21 @@
 import { TBinaryTreeVal, IBinaryTreeNode } from './BinaryTreeNode'
 
 interface IBinaryTree {
-    addNode: (val: TBinaryTreeVal) => IBinaryTreeNode
+    add: (val: TBinaryTreeVal) => IBinaryTreeNode
+    contains: (val: TBinaryTreeVal) => boolean
+    delete: (val: TBinaryTreeVal) => IBinaryTreeNode
 }
 
 abstract class BinaryTree implements IBinaryTree {
-    public addNode = (val: TBinaryTreeVal): IBinaryTreeNode => {
+    public add = (val: TBinaryTreeVal): IBinaryTreeNode => {
+        throw Error('Method not implemented!')
+    }
+
+    public contains = (val: TBinaryTreeVal): boolean => {
+        throw Error('Method not implemented!')
+    }
+
+    public delete = (val: TBinaryTreeVal): IBinaryTreeNode => {
         throw Error('Method not implemented!')
     }
 }
