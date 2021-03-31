@@ -14,8 +14,6 @@ class BinaryTreeNode implements IBinaryTreeNode {
 
     constructor(val: TBinaryTreeVal = null) {
         this.val = val
-        this.left = null
-        this.right = null
     }
 }
 
