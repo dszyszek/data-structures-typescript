@@ -1,18 +1,18 @@
-export type TBinarySearchTreeNodeVal = any
+export type TBinarySearchTreeVal = any
 export interface IBinarySearchTreeNode {
-    val: TBinarySearchTreeNodeVal
+    val: TBinarySearchTreeVal
     left: IBinarySearchTreeNode | null
     right: IBinarySearchTreeNode | null
 }
 
 class BinarySearchTreeNode implements IBinarySearchTreeNode {
-    public val: TBinarySearchTreeNodeVal | null = null
+    public val: TBinarySearchTreeVal
 
     public left: IBinarySearchTreeNode | null = null
 
     public right: IBinarySearchTreeNode | null = null
 
-    constructor(val?: TBinarySearchTreeNodeVal) {
+    constructor(val: TBinarySearchTreeVal = null) {
         this.val = val
     }
 }

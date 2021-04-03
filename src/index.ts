@@ -5,7 +5,6 @@ import WeightedDirectedGraph from './ds/Graph/WeightedDirectedGraph'
 import WeightedUndirectedGraph from './ds/Graph/WeightedUndirectedGraph'
 import Stack from './ds/Stack/Stack'
 import Queue from './ds/Queue/Queue'
-import BinaryTree from './ds/BinaryTree/BinaryTree'
 import BinarySearchTree from './ds/BinarySearchTree/BinarySearchTree'
 
 export {
@@ -16,6 +15,5 @@ export {
     WeightedUndirectedGraph,
     Stack,
     Queue,
-    BinaryTree,
     BinarySearchTree,
 }
