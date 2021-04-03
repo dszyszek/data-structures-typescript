@@ -53,11 +53,11 @@ class Graph extends GraphAbstract {
 
     public display = () => {
         this.adjList.forEach((list, vertex) => {
-            let currentList: ILinkedListNode = list.head
+            let currentList: ILinkedListNode = list.head.next
             let adjacentVertices: string = ''
 
-            while (currentList.next) {
-                adjacentVertices += `${currentList.val}, `
+            while (currentList) {
+                adjacentVertices += `${currentList.val.val}, `
                 currentList = currentList.next
             }
 
